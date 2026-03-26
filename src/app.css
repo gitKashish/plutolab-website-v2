@@ -1,0 +1,117 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* 1. Define Tailwind mappings and custom utilities */
+@theme {
+  /* Fonts */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: "Source Serif 4", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+
+  /* Map our custom CSS variables to Tailwind utility classes */
+  --color-background: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  
+  --color-border-main: var(--border-main);
+  --color-border-hover: var(--border-hover);
+
+  /* Accordion Animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+}
+
+/* 2. Enable class-based dark mode */
+@variant dark (&:where(.dark, .dark *));
+
+/* 3. Global CSS Variables and Base Elements */
+@layer base {
+  :root {
+    /* Light Mode */
+    --bg: #ffffff; /* Page background */
+    --surface: #ffffff; /* Card background */
+    --surface-hover: #f3f4f6; /* gray-100 */
+    
+    --primary: #2563eb; /* blue-600 */
+    --primary-hover: #1d4ed8; /* blue-700 */
+    
+    --text-main: #111827; /* gray-900 */
+    --text-muted: #6b7280; /* gray-500 */
+    
+    --border-main: #e5e7eb; /* gray-200 */
+    --border-hover: #93c5fd; /* blue-300 */
+  }
+
+  .dark {
+    /* "Amber Lab" High Contrast */
+    --bg: #09090b;           /* zinc-950 (Nearly black, but warmer) */
+    --surface: #18181b;      /* zinc-900 (Definite card separation) */
+    --surface-hover: #27272a; /* zinc-800 */
+    
+    /* Primary Action: Vivid Amber */
+    --primary: #f0b11f;      /* gruvbox-yellow */
+    --primary-hover: #f59e0b; /* amber-500 */
+    
+    /* Text: Pure white and silver */
+    --text-main: #ffffff;    
+    --text-muted: #a1a1aa;   /* zinc-400 */
+    
+    /* Borders: Sharp and visible */
+    --border-main: #3f3f46;  /* zinc-700 */
+    --border-hover: #71717a; /* zinc-500 (Clearly defined boxes) */
+  }
+
+  /* Automatically apply theme to the whole body */
+  body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    @apply font-sans transition-colors duration-300 antialiased;
+  }
+  
+  /* Make all headings use your serif font automatically */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight;
+  }
+}
+
+/* 4. Custom Keyframes for Components & View Transitions */
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--bits-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--bits-accordion-content-height); }
+  to { height: 0; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes slide-from-bottom {
+  from { transform: translateY(12px); }
+}
+
+@keyframes slide-to-top {
+  to { transform: translateY(-12px); }
+}
+
+::view-transition-old(root) {
+  animation: 200ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
+             200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-top;
+}
+
+::view-transition-new(root) {
+  animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
+             250ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-bottom;
+}
