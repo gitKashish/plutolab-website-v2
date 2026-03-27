@@ -1,17 +1,17 @@
 <script lang="ts">
-    // import SEO from "$lib/components/SEO.svelte";
+    import SEO from "$lib/components/SEO.svelte";
 
     let { data } = $props();
     // svelte-ignore state_referenced_locally
-    const { content: Content, meta } = data;
+    const { content: Content, meta, slug } = data;
 </script>
 
-<!-- Dynamically pass your Markdown frontmatter straight into the SEO component -->
-<!-- <SEO 
+<SEO 
     title="{meta.title} · PlutoLab" 
     description={meta.description || "Read this article on PlutoLab."} 
+    image={`https://plutolab.org/assets/images/blog/${slug}/og.png`}
     type="article"
-/> -->
+/>
 
 <div class="max-w-2xl mx-auto px-4 sm:px-0 py-6">
     <!-- Breadcrumb -->

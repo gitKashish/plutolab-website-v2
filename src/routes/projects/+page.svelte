@@ -1,9 +1,8 @@
 <script lang="ts">
     import { Tabs } from "bits-ui";
     import ExternalLink from "@lucide/svelte/icons/external-link";
-    import Lock from "@lucide/svelte/icons/lock";
     import ArrowRight from "@lucide/svelte/icons/arrow-right";
-    // import SEO from "$lib/components/SEO.svelte";
+    import SEO from "$lib/components/SEO.svelte";
 
     const projectCategories = [
         {
@@ -75,7 +74,11 @@
     ];
 </script>
 
-<!-- <SEO title="Projects | PlutoLab" description="Projects built at PlutoLab with simplicity and clarity in mind." /> -->
+<SEO 
+    title="Projects | PlutoLab"
+    description="Projects built at PlutoLab with simplicity and clarity in mind." 
+    image="https://plutolab.org/assets/images/projects.png"
+/>
 
 <div class="max-w-2xl mx-auto px-4 sm:px-0 py-6">
     <header class="mb-12">
@@ -134,8 +137,7 @@
                                     </span>
                                 {:else}
                                     <span class="self-start inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200 dark:bg-amber-950/30 dark:text-amber-400 dark:border-amber-900/50 shrink-0">
-                                        <Lock class="size-3" />
-                                        Classified
+                                        In Progress
                                     </span>
                                 {/if}
                             </div>
@@ -156,14 +158,6 @@
                                         {/each}
                                     </div>
                                 </div>
-
-                                {#if project.status === 'In Progress'}
-                                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                                        <div class="border-2 border-amber-500/50 text-amber-500/50 text-xl font-mono font-bold uppercase tracking-widest px-6 py-2 rotate-[-4deg] rounded-md backdrop-blur-sm shadow-sm">
-                                            Restricted Access
-                                        </div>
-                                    </div>
-                                {/if}
                             </div>
 
                             {#if project.links.length > 0 && project.status === 'Active'}

@@ -6,28 +6,26 @@
     import Database from "@lucide/svelte/icons/database";
     import BookOpen from "@lucide/svelte/icons/book-open";
     import GitGraph from "@lucide/svelte/icons/git-graph";
-    // import SEO from "$lib/components/SEO.svelte";
+    import SEO from "$lib/components/SEO.svelte";
 </script>
 
-<!-- <SEO 
+<SEO 
     title="Kosh | Local-First Password Manager" 
     description="A fast, secure, offline-first command-line password manager." 
-/> -->
+    image="https://plutolab.org/assets/images/kosh.png"
+/>
 
 <div class="max-w-2xl mx-auto px-4 sm:px-0 py-6">
     
-    <!-- Hero / Breadcrumb -->
+    <!-- Breadcrumb -->
     <div class="mb-8">
         <a href="/projects" class="text-sm font-medium text-text-muted hover:text-primary transition-colors inline-block">
             ← Back to Projects
         </a>
     </div>
 
-    <!-- Asymmetric Bento Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 auto-rows-[minmax(140px,auto)]">
         
-        <!-- Box 1: The Hero Box (Spans full width) -->
-        <!-- Now uses bg-primary to perfectly match whatever theme color you set globally! -->
         <div class="col-span-1 sm:col-span-2 rounded-3xl text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden shadow-lg shadow-primary/30
             bg-[radial-gradient(circle_at_90%_10%,rgba(255,255,255,0.25),transparent_40%),linear-gradient(to_bottom_right,var(--primary),var(--primary-hover))]">
             
@@ -60,8 +58,7 @@
             </div>
         </div>
 
-        <!-- Box 2: Local First -->
-        <!-- Moved to bg-surface, text-text-main, border-border-main -->
+        <!-- Local First -->
         <div class="col-span-1 rounded-3xl bg-surface border border-border-main p-6 flex flex-col justify-center group hover:border-green-500/50 transition-colors">
             <div class="flex items-center gap-3 mb-3">
                 <div class="p-2 bg-green-500/10 rounded-lg text-green-600 dark:text-green-400">
@@ -74,8 +71,7 @@
             </p>
         </div>
 
-        <!-- Box 3: Advanced Cryptography -->
-        <!-- Intentionally left hardcoded dark to create the signature "Bento" contrast -->
+        <!-- Advanced Cryptography -->
         <div class="col-span-1 sm:row-span-2 rounded-3xl bg-gray-900 dark:bg-black text-white border border-gray-800 p-6 flex flex-col justify-between group hover:border-gray-600 transition-colors">
             <div>
                 <div class="flex items-center gap-3 mb-3">
@@ -95,7 +91,7 @@
             </ul>
         </div>
 
-        <!-- Box 4: Adaptive Search -->
+        <!-- Adaptive Search -->
         <div class="col-span-1 rounded-3xl bg-surface border border-border-main p-6 flex flex-col justify-center group hover:border-primary transition-colors">
             <div class="flex items-center gap-3 mb-3">
                 <!-- Uses primary/10 to automatically tint based on theme -->
@@ -109,7 +105,7 @@
             </p>
         </div>
 
-        <!-- Box 5: SQLite Vault -->
+        <!-- SQLite Vault -->
         <div class="col-span-1 sm:col-span-2 rounded-3xl bg-surface border border-border-main p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 group hover:border-border-hover transition-colors">
             <div class="flex items-center gap-3 sm:shrink-0">
                 <div class="p-3 bg-surface-hover rounded-xl text-text-muted">

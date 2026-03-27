@@ -4,6 +4,7 @@
     import BookOpen from "@lucide/svelte/icons/book-open";
     import ChevronLeft from "@lucide/svelte/icons/chevron-left";
     import ChevronRight from "@lucide/svelte/icons/chevron-right";
+    import SEO from "$lib/components/SEO.svelte";
     
     let { data } = $props();
 
@@ -25,6 +26,8 @@
         if (currentPage > 1) currentPage--;
     }
 </script>
+
+<SEO />
 
 <div class="max-w-2xl mx-auto px-4 sm:px-0 py-6">
     <header class="mb-16">

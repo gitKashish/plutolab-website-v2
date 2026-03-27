@@ -2,11 +2,12 @@
     import { NavigationMenu, Tooltip } from "bits-ui";
     import Sun from "@lucide/svelte/icons/sun";
     import Moon from "@lucide/svelte/icons/moon";
-    import Orbit from "@lucide/svelte/icons/orbit";
-    import { useTheme } from "$lib/theme.svelte";
+
     import { onNavigate } from "$app/navigation";
-    import "../app.css";
+    import { useTheme } from "$lib/theme.svelte";
     import Logo from "$lib/components/Logo.svelte";
+    
+    import "../app.css";
 
     let { children } = $props();
 
@@ -47,7 +48,6 @@
                     href="/"
                     class="text-xl font-serif tracking-tight hover:text-primary transition-colors"
                 >
-                    <!-- <Orbit class="size-6" /> -->
                      <Logo strokeWidth={2.4} size={38}></Logo>
                 </a>
 

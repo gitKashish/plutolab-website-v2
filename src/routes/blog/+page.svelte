@@ -3,7 +3,7 @@
     import Calendar from "@lucide/svelte/icons/calendar";
     import ChevronLeft from "@lucide/svelte/icons/chevron-left";
     import ChevronRight from "@lucide/svelte/icons/chevron-right";
-    // import SEO from "$lib/components/SEO.svelte";
+    import SEO from "$lib/components/SEO.svelte";
     
     let { data } = $props();
 
@@ -25,7 +25,11 @@
     }
 </script>
 
-<!-- <SEO title="Blog | PlutoLab" description="Notes on software, systems, and building things." /> -->
+<SEO 
+    title="Blog | PlutoLab"
+    description="Notes on software, systems, and building things."
+    image="https://plutolab.org/assets/images/blog.png"
+/>
 
 <div class="max-w-2xl mx-auto px-4 sm:px-0 py-6">
     <header class="mb-12 flex justify-between items-end">

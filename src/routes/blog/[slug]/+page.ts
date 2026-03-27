@@ -9,7 +9,8 @@ export async function load({ params }) {
             // MDSvex exposes the markdown content as a default Svelte component
             content: post.default,
             // It also exposes the YAML frontmatter as metadata
-            meta: post.metadata
+            meta: post.metadata,
+            slug: params.slug
         };
     } catch (e) {
         // If the file doesn't exist, throw a 404
