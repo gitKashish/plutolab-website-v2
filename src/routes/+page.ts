@@ -21,9 +21,9 @@ export async function load() {
     const projects = [
         {
             type: 'RELEASE',
-            title: 'Kosh',
+            title: 'Kosh v0.2.0',
             link: '/kosh',
-            date: '2026-03-15', // Date of release
+            date: '2026-03-27', // Date of release
             description: 'A command-line credential management tool built with Go.'
         }
     ];
