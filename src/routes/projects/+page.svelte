@@ -28,7 +28,7 @@
                     description: "This website itself is a project in modern, minimal web development. Built with Svelte 5 and Tailwind v4, it showcases how clean code and thoughtful design can create elegant experiences without heavy frameworks.",
                     tech: ["Svelte 5", "Tailwind v4", "TypeScript", "Self-hosted"],
                     links: [
-                        { label: "Source Code", url: "https://git.plutolab.org/plutolab/website" }
+                        { label: "Source Code", url: "https://git.plutolab.org/plutolab/plutolab-website-v2" }
                     ]
                 }
             ]

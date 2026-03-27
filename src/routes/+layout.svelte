@@ -3,6 +3,7 @@
     import Sun from "@lucide/svelte/icons/sun";
     import Moon from "@lucide/svelte/icons/moon";
 
+    import { page } from "$app/state";
     import { onNavigate } from "$app/navigation";
     import { useTheme } from "$lib/theme.svelte";
     import Logo from "$lib/components/Logo.svelte";
@@ -40,7 +41,7 @@
 <Tooltip.Provider>
     <div class="min-h-screen font-sans">
         <!-- Using border-border-main for dark mode border -->
-        <header class="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-transparent">
+        <header class="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-transparent vt-header">
             <div class="p-6 mx-auto max-w-2xl flex justify-between items-center">
                 
                 <!-- text-primary automatically handles blue-600/blue-500 switching -->
@@ -55,15 +56,17 @@
                     <NavigationMenu.Root class="relative z-10 flex max-w-max items-center justify-center">
                         <NavigationMenu.List class="group flex flex-1 list-none items-center justify-center space-x-1">
                             {#each navLinks as link}
+                                {@const isActive = page.url.pathname.startsWith(link.href)}
+
                                 <NavigationMenu.Item>
                                     <NavigationMenu.Link
                                         href={link.href}
                                         class="
-                                            hover:bg-surface-hover
-                                            focus-visible:bg-surface-hover
-                                            focus-visible:ring-2 focus-visible:ring-primary
                                             outline-none block select-none rounded-lg px-4 py-2 text-sm font-medium
-                                            transition-colors
+                                            transition-colors focus-visible:ring-2 focus-visible:ring-primary
+                                            {isActive 
+                                                ? 'bg-surface-hover text-primary font-semibold' 
+                                                : 'text-text-muted hover:bg-surface-hover hover:text-text-main focus-visible:bg-surface-hover'}
                                         "
                                     >
                                         {link.title}
@@ -89,8 +92,28 @@
             </div>
         </header>
 
-        <main class="max-w-2xl mx-auto p-0 sm:p-6">
+        <main class="max-w-2xl mx-auto p-0 sm:p-6 vt-main">
             {@render children()}
         </main>
     </div>
 </Tooltip.Provider>
+
+<style>
+    .vt-header {
+        view-transition-name: site-header;
+    }
+
+    .vt-main {
+        view-transition-name: site-main;
+    }
+
+    ::view-transition-old(site-main) {
+        animation: 200ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out,
+                    200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-top;
+    }
+
+    ::view-transition-new(site-main) {
+        animation: 250ms cubic-bezier(0.4, 0, 0.2, 1) both fade-in,
+                    250ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-bottom;
+        }
+</style>
