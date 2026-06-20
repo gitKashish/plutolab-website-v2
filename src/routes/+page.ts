@@ -21,6 +21,13 @@ export async function load() {
     const projects = [
         {
             type: 'RELEASE',
+            title: 'Kosh v0.2.3',
+            link: '/kosh',
+            date: '2026-06-20', // Date of release
+            description: 'Smarter Search, Seamless Installs, and Under-the-Hood Polish'
+        },
+        {
+            type: 'RELEASE',
             title: 'Kosh v0.2.0',
             link: '/kosh',
             date: '2026-03-27', // Date of release
