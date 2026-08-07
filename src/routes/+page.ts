@@ -21,6 +21,13 @@ export async function load() {
     const projects = [
         {
             type: 'RELEASE',
+            title: 'Kosh v0.3.0',
+            link: '/blog/kosh-v0.3.0',
+            date: '2026-08-08', // Date of release
+            description: 'One Vault Became Many - Profiles, better search, and the filesystem lessons behind them.'
+        },
+        {
+            type: 'RELEASE',
             title: 'Kosh v0.2.3',
             link: '/kosh',
             date: '2026-06-20', // Date of release
