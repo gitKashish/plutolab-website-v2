@@ -18,6 +18,7 @@
         { title: "Projects", href: "/projects" },
         { title: "Blog", href: "/blog" },
         { title: "Kosh", href: "/kosh" },
+        { title: "About", href: "/about" },
     ];
 
     // Hook into SvelteKit's router

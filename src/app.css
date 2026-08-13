@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./fonts.css";
 @plugin "@tailwindcss/typography";
 
 /* 1. Define Tailwind mappings and custom utilities */
