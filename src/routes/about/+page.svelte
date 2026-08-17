@@ -44,6 +44,11 @@
         { label: "LinkedIn", value: "linkedin.com/in/kashish-sahu", href: "https://linkedin.com/in/kashish-sahu" }
     ];
 
+    // The masthead portrait gets a tighter crop in the narrow column, where the
+    // full bust would be too small to read as a face.
+    let viewport = $state(0);
+    const narrow = $derived(viewport > 0 && viewport < 640);
+
     // schema.org Person — sameAs comes off the same list rendered below, so the
     // profiles a search engine ties to the name cannot drift from the page.
     const person = {
@@ -70,12 +75,14 @@
     {@html `<script type="application/ld+json">${JSON.stringify(person)}</script>`}
 </svelte:head>
 
+<svelte:window bind:innerWidth={viewport} />
+
 <div class="max-w-2xl mx-auto px-4 sm:px-0 py-6">
 
     <!-- ── Masthead ─────────────────────────────────────────── -->
-    <header class="mb-16">
+    <header class="mb-12 sm:mb-16">
         <!-- Standing head: the page's own label, since the site mark is already in the nav -->
-        <div class="flex items-end justify-between gap-6 border-b border-border-main pb-5">
+        <div class="flex items-end justify-between gap-6 border-b border-border-main pb-4 sm:pb-5">
             <p class="font-mono text-[0.65rem] uppercase tracking-[0.35em] text-text-muted">
                 About &mdash; Kashish Sahu
             </p>
@@ -83,39 +90,43 @@
             <div class="dot-field hidden h-9 w-24 sm:block"></div>
         </div>
 
-        <div class="grid gap-10 pt-12 sm:grid-cols-[1.2fr_0.8fr] sm:items-center sm:gap-6">
-            <div>
-                <h1 class="text-3xl sm:text-4xl font-serif font-medium leading-[1.15] tracking-tight text-text-main">
-                    I build backends,<br />
-                    read a great deal of<br />
-                    other people's code,<br />
-                    <span class="italic text-primary">and keep a small server running.</span>
-                </h1>
-
-                <div class="mt-9 font-mono text-xs leading-relaxed">
-                    <p class="text-primary">$ whoami</p>
-                    <p class="text-text-muted">
-                        <span class="text-primary">&gt;</span> backend engineer, builder, self-hoster
-                    </p>
-                </div>
-            </div>
+        <!-- Two columns at every width — stacking left the portrait marooned. Below
+             `sm` the headline drops its hard line breaks and wraps to the narrower
+             measure instead (see the media query at the foot of this file). -->
+        <div class="grid grid-cols-[1fr_128px] items-center gap-4 pt-8
+                    sm:grid-cols-[1.2fr_0.8fr] sm:gap-6 sm:pt-12">
+            <h1 class="headline text-2xl sm:text-4xl font-serif font-medium leading-[1.25] sm:leading-[1.15] tracking-tight text-text-main">
+                I build backends,<br />
+                read a great deal of<br />
+                other people's code,<br />
+                <span class="italic text-primary">and keep a small server running.</span>
+            </h1>
 
             <!-- Dissolves on the inner edge, towards the text, and along the bottom;
-                 the right edge keeps its hard crop so the face runs out of frame.
-                 Nudge the crop with zoom / focusX / focusY rather than re-exporting. -->
+                 the right edge keeps its hard crop so the face runs out of frame. -->
             <DotMatrix
                 src="/assets/images/about/portrait.png"
                 alt="Halftone portrait of Kashish Sahu"
                 fade={0}
-                dissolve={{ left: 0.2, bottom: 0.1 }}
-                class="text-primary w-full max-w-[240px] sm:max-w-none sm:justify-self-end sm:-mr-6"
+                dissolve={narrow ? { left: 0.18, bottom: 0.18 } : { left: 0.2, bottom: 0.1 }}
+                zoom={narrow ? 1.15 : 1}
+                focusY={narrow ? 0.58 : 0.5}
+                class="text-primary w-full -mr-4 sm:-mr-6"
             />
+        </div>
+
+        <div class="mt-7 font-mono text-xs leading-relaxed sm:mt-9">
+            <p class="text-primary">$ whoami</p>
+            <p class="text-text-muted">
+                <span class="text-primary">&gt;</span> backend engineer, builder, self-hoster
+            </p>
         </div>
 
         <!-- Contact sits in the masthead: nobody should have to scroll for a résumé. -->
         <nav
             aria-label="Elsewhere"
-            class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 border-y border-border-main py-4 font-mono text-[0.7rem]"
+            class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3 border-y border-border-main py-4
+                   font-mono text-[0.7rem] sm:mt-10 sm:gap-x-6"
         >
             <span class="text-primary">$ ls elsewhere/</span>
             {#each elsewhere as link}
@@ -250,7 +261,7 @@
        and fold back above the heading when there isn't. */
     .section-mark {
         display: block;
-        margin-bottom: 0.6rem;
+        margin-bottom: 0.3rem;
         font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         font-size: 0.8rem;
         letter-spacing: 0.2em;
@@ -287,6 +298,14 @@
         background-size: 12px 12px;
         opacity: 0.35;
         pointer-events: none;
+    }
+
+    /* The headline's breaks are set for the wide measure; in the narrow column
+       beside the portrait it has to wrap on its own. */
+    @media (max-width: 639px) {
+        .headline br {
+            display: none;
+        }
     }
 
     .drop-cap::first-letter {

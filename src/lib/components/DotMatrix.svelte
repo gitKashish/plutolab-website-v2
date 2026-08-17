@@ -248,9 +248,23 @@
         return () => observer.disconnect();
     });
 
-    // The dots are painted, not styled, so a theme flip needs a repaint.
+    // The dots are painted, not styled, so anything that changes the raster —
+    // the theme, the crop, the tuning — has to ask for a repaint by hand.
     $effect(() => {
-        theme.isDark;
+        void [
+            theme.isDark,
+            cell,
+            maxDot,
+            floor,
+            gamma,
+            polarity,
+            silhouette,
+            edges,
+            zoom,
+            focusX,
+            focusY,
+            aspect
+        ];
         requestAnimationFrame(() => draw());
     });
 </script>
